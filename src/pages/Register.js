@@ -12,27 +12,33 @@ function Register() {
   const [orgName, setOrgName] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = async (e) => {
+ const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       
-      // Save the user "Profile" with the specific ROLE
+      // 1. Save the user "Profile" with the specific ROLE
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
         email: email,
-        role: role, // "CONSUMER" or "SHELTER"
-        orgName: role === "SHELTER" ? orgName : "INDIVIDUAL",
+        role: role, // "CONSUMER", "SHELTER", or "VENDOR"
+        orgName: (role === "SHELTER" || role === "VENDOR") ? orgName : "INDIVIDUAL",
         createdAt: new Date()
       });
 
       alert("ACCOUNT_CREATED_SUCCESSFULLY");
-      navigate("/home");
+
+      // 2. CONDITIONAL NAVIGATION
+      if (role === "VENDOR") {
+        navigate("/vendor"); // Direct to Dashboard
+      } else {
+        navigate("/home");   // Direct to Consumer Feed
+      }
+      
     } catch (err) {
       alert(err.message);
     }
   };
-
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -47,7 +53,8 @@ function Register() {
               className="role-selector"
             >
               <option value="CONSUMER">FOOD SAVER (USER)</option>
-              <option value="SHELTER">ORPHANAGE / SHELTER</option>
+              <option value="SHELTER">SHELTER</option>
+              <option value="VENDOR">VENDOR</option>
             </select>
           </div>
 
