@@ -1,0 +1,58 @@
+.app-container {
+  max-width: 450px; /* Mobile width */
+  margin: 0 auto;
+  background-color: var(--odin-bg);
+  min-height: 100vh;
+  padding: 1.5rem;
+  border-left: 1px solid var(--odin-black);
+  border-right: 1px solid var(--odin-black);
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.app-header h1 { font-size: 1.2rem; font-weight: 900; }
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.post-form input {
+  background: transparent;
+  border: 2px solid var(--odin-black);
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.post-btn {
+  background: var(--odin-black);
+  color: var(--odin-bg);
+  padding: 1.2rem;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+}
+
+.food-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--odin-black);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.card-info h4 { font-weight: 900; }
+.card-info p { font-size: 0.7rem; font-weight: 700; }
+.card-price { font-size: 1.5rem; font-weight: 900; }

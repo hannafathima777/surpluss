@@ -1,0 +1,115 @@
+.auth-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--odin-bg);
+  padding: 20px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 500px;
+  border: 2px solid var(--odin-black);
+  padding: 3rem;
+  background: transparent;
+  position: relative;
+}
+
+.card-lines {
+  margin-bottom: 2rem;
+}
+
+.card-lines .line {
+  background-color: var(--odin-black);
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.line.thick { height: 8px; }
+.line.thin { height: 1px; }
+
+.auth-title {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.05em;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.auth-card input, 
+.auth-card select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--odin-black); /* Line-based inputs */
+  padding: 0.8rem 0;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: none;
+  color: var(--odin-black);
+}
+
+.auth-card input::placeholder {
+  color: rgba(26, 26, 26, 0.3);
+}
+
+.auth-card input:focus {
+  border-bottom-width: 5px; /* Interactive hover effect */
+}
+
+.auth-submit {
+  background: var(--odin-black);
+  color: var(--odin-bg);
+  border: none;
+  padding: 1.5rem;
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: transform 0.1s ease;
+}
+
+.auth-submit:active {
+  transform: scale(0.98);
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--odin-black);
+  padding-top: 1.5rem;
+}
+
+.auth-footer a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: opacity 0.2s;
+}
+
+.auth-footer a:hover {
+  opacity: 0.6;
+}

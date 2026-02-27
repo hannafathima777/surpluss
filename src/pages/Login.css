@@ -1,0 +1,72 @@
+.auth-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--odin-bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  border: 4px solid var(--odin-black);
+  padding: 3rem;
+}
+
+.auth-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.auth-card input, .auth-card select {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--odin-black);
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.auth-submit {
+  background: var(--odin-black);
+  color: var(--odin-bg);
+  border: none;
+  padding: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.auth-switch {
+  display: block;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  border-top: 1px solid var(--odin-black);
+  padding-top: 1rem;
+}
+
+.auth-error {
+  background: var(--odin-black);
+  color: white;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}

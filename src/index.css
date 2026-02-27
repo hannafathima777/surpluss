@@ -1,0 +1,15 @@
+:root {
+  --bg-color: #D1D1CB; /* The specific "Odin" Greige */
+  --text-primary: #1A1A1A; /* Deep Charcoal */
+  --border-stroke: #1A1A1A;
+  --font-main: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  margin: 0;
+  text-transform: uppercase; /* Most text in the reference is uppercase */
+  letter-spacing: -0.02em;
+}
