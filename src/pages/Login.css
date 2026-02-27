@@ -1,72 +1,97 @@
 .auth-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--odin-bg);
+  background-color: #ffffff;
+  padding: 40px;
 }
 
+/* Wide layout with a simple 2px border */
 .auth-card {
   width: 100%;
-  max-width: 450px;
-  border: 4px solid var(--odin-black);
-  padding: 3rem;
+  max-width: 600px; 
+  border: 2px solid #000;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
+.auth-header {
+  padding: 40px 40px 10px 40px;
+}
+
+/* Keeps the title size modest */
 .auth-title {
-  font-size: 2rem;
+  font-size: 2rem; 
   font-weight: 800;
-  margin-bottom: 0.5rem;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.02em;
+}
+
+.line.thin {
+  height: 2px;
+  background: #000;
+  width: 100%;
 }
 
 .auth-form {
+  padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 .input-group label {
-  display: block;
   font-size: 0.8rem;
   font-weight: 800;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
+  display: block;
 }
 
-.auth-card input, .auth-card select {
+/* Thin border for inputs */
+.auth-card input {
   width: 100%;
-  background: transparent;
-  border: 1px solid var(--odin-black);
-  padding: 1rem;
+  border: 1px solid #000;
+  padding: 12px;
+  font-size: 0.9rem;
   font-family: inherit;
-  font-weight: 600;
-  text-transform: uppercase;
+  outline: none;
+}
+
+.auth-card input:focus {
+  background: #f9f9f9;
+  border-width: 2px;
 }
 
 .auth-submit {
-  background: var(--odin-black);
-  color: var(--odin-bg);
+  background: #000;
+  color: #fff;
   border: none;
-  padding: 1.2rem;
+  padding: 15px;
   font-weight: 800;
+  font-size: 0.9rem;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 10px;
 }
 
-.auth-switch {
-  display: block;
-  margin-top: 2rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-align: center;
-  border-top: 1px solid var(--odin-black);
-  padding-top: 1rem;
+.auth-submit:hover {
+  opacity: 0.9;
 }
 
 .auth-error {
-  background: var(--odin-black);
-  color: white;
-  padding: 0.5rem;
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
+  color: #ff0000;
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.auth-switch {
+  padding: 20px;
   text-align: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-top: 1px solid #000;
+  cursor: pointer;
+  background: #fafafa;
 }

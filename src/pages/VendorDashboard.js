@@ -29,6 +29,11 @@ function VendorDashboard() {
 
   const handlePost = async (e) => {
     e.preventDefault();
+    // SAFETY CHECK: If not logged in, stop immediately
+  if (!auth.currentUser) {
+    alert("ERROR: YOU_ARE_NOT_LOGGED_IN");
+    return;
+  }
     try {
       await addDoc(collection(db, "listings"), {
         vendorId: auth.currentUser.uid,
