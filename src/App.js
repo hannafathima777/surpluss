@@ -10,7 +10,9 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* Set Login as the root path */}
+        <Route path="/" element={<Login />} /> 
+        <Route path="/home" element={<Home />} />
         <Route path="/vendor" element={<VendorDashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
