@@ -8,7 +8,9 @@ import "./VendorDashboard.css";
 
 function VendorDashboard() {
   const [resName, setResName] = useState("");
-  const [category, setCategory] = useState("General");
+  const [category, setCategory] = useState("Restaurant");
+  const [location, setLocation] = useState(""); // NEW: Location Address
+  const [imgUrl, setImgUrl] = useState("");     // NEW: Image URL
   const [itemName, setItemName] = useState("");
   const [originalPrice, setOriginalPrice] = useState("");
   const [surplusPrice, setSurplusPrice] = useState("");
@@ -32,6 +34,8 @@ function VendorDashboard() {
         vendorId: auth.currentUser.uid,
         vendorName: resName.toUpperCase(),
         category: category.toUpperCase(),
+        location: location, // Added to DB
+        imageUrl: imgUrl || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c", // Fallback image
         itemName: itemName.toUpperCase(),
         originalPrice,
         surplusPrice,
@@ -39,9 +43,17 @@ function VendorDashboard() {
         quantity: parseInt(quantity),
         createdAt: serverTimestamp(),
       });
-      // Clear item fields but keep Restaurant Name for convenience
-      setItemName(""); setOriginalPrice(""); setSurplusPrice(""); setPickupTime(""); setQuantity(1);
-    } catch (err) { alert("Post Failed"); }
+      
+      // Clear item fields but keep Establishment details for faster multi-posting
+      setItemName(""); 
+      setOriginalPrice(""); 
+      setSurplusPrice(""); 
+      setPickupTime(""); 
+      setQuantity(1);
+      alert("SUCCESS: ITEM PUSHED TO FEED");
+    } catch (err) { 
+      alert("Post Failed: " + err.message); 
+    }
   };
 
   const handleDelete = async (id) => {
@@ -68,14 +80,31 @@ function VendorDashboard() {
             <label>RESTAURANT NAME</label>
             <input type="text" placeholder="E.G. OAK & BERRY" value={resName} onChange={(e) => setResName(e.target.value)} required />
           </div>
+          
+          <div className="form-row">
+            <div className="input-box" style={{flex: 1}}>
+              <label>CATEGORY</label>
+              <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="Bakery">BAKERY</option>
+                <option value="Restaurant">RESTAURANT</option>
+                <option value="Cafe">CAFE</option>
+                <option value="Quick Bites">QUICK BITES</option>
+              </select>
+            </div>
+            <div className="input-box" style={{flex: 2}}>
+               <label>LOCATION / ADDRESS</label>
+               <input type="text" placeholder="E.G. MG ROAD, KOCHI" value={location} onChange={(e) => setLocation(e.target.value)} required />
+            </div>
+          </div>
+
           <div className="input-box">
-            <label>CATEGORY</label>
-            <select value={category} onChange={(e) => setCategory(e.target.value)}>
-              <option value="Bakery">BAKERY</option>
-              <option value="Restaurant">RESTAURANT</option>
-              <option value="Cafe">CAFE</option>
-              <option value="Quick Bites">QUICK BITES</option>
-            </select>
+           <label>IMAGE URL (UNSPLASH/DIRECT LINK)</label>
+           <input 
+            type="text" 
+            placeholder="https://images.unsplash.com/photo..." 
+            value={imgUrl} 
+            onChange={(e) => setImgUrl(e.target.value)} // This updates the state
+           />
           </div>
 
           <h2 className="section-label" style={{marginTop: '2rem'}}>02. SURPLUS DATA</h2>
@@ -104,8 +133,9 @@ function VendorDashboard() {
                   <span className="time-tag">{item.pickupTime}</span>
                 </div>
                 <h3>{item.itemName}</h3>
+                <p style={{fontSize: '0.7rem', color: '#666', marginBottom: '0.5rem'}}>{item.location}</p>
                 <div className="card-footer">
-                  <span className="price-info">${item.surplusPrice}</span>
+                  <span className="price-info">₹{item.surplusPrice}</span>
                   <button onClick={() => handleDelete(item.id)} className="del-btn">REMOVE</button>
                 </div>
               </div>
