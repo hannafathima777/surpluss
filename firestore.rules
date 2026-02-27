@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 1. USER PROFILES
+    // Needed for Login/Register and checking if someone is a "SHELTER" or "VENDOR"
+    match /users/{userId} {
+      // Anyone logged in can see a profile (needed to see Vendor names on items)
+      allow read: if request.auth != null;
+      // Only the owner can change their own profile (name, role)
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // 2. FOOD LISTINGS
+    // Needed for VendorDashboard (posting) and RestaurantDetail (reserving)
+    match /listings/{itemId} {
+      // Anyone logged in can see the food feed
+      allow read: if request.auth != null;
+      
+      // Allow posting: Must be logged in and the data must say it's yours
+      allow create: if request.auth != null && request.resource.data.vendorId == request.auth.uid;
+      
+      // Allow updates: Needed when a user "RESERVES" (quantity decreases) 
+      // or a vendor "SCANS" (status changes)
+      allow update: if request.auth != null;
+      
+      // Allow deleting: Only the vendor who created it can remove it
+      allow delete: if request.auth != null && resource.data.vendorId == request.auth.uid;
+    }
+    
+    // 3. RESERVATIONS / ORDERS (Optional but recommended)
+    // If you decide to save "claimed" tickets in a separate collection later
+    match /orders/{orderId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
